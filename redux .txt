@@ -212,7 +212,7 @@ Then go back to the top level index.js, import the combined reducers(the name of
 //axios and redux-thunk libraries:
 axios is responsible for helping us making api request or ajax requests.
 redux-thunk make asynchronise action creator behave the way we expect.
-these are middleware so they will arguments in createStore's third argument in src/index.js
+these are middleware so they will be arguments in createStore's third argument in src/index.js
 action creators get refactored to use redux-thunk: instead of returning a action we return a function. redux thunk sees we return a function and passes the regular dispatch function as a argument. that way, we can dispatch the action after the request has been completed. in this function we make a request with axios, and then invoke the dispatch function with the action object as its argument.(either using a promise or  async-await syntax)
 
 
