@@ -1,0 +1,19 @@
+react router v4
+
+wiring up
+all the configuration will be in the App.js file. import {} from 'react-router-dom' (versus react-router-native). it exports a couple of helpers: BrowserRouter and Route.
+BrowserRouter is a components that can be seen as the brains. it tells react router how to behave. it looks at the URL and changes the visible components 
+Route is a react component that is used to set up a rule between a certain route and the components that will be visible
+
+in the App component open a BrowserRouter tag. Inside of it place a collection of different routes. it expects to get only one child. (you can use a div). in it place a Route component, and give it the configuration: pass in a prop path="the/url" and a prop component={componentName}. notice not to write the actual domain name, but only the route portion.
+
+react router opens all paths that are contained in the URL string. (sort of greedy matching). To fix it, add the exact prop as true to the Route component. exact={true}, or just the word exact, because JSX translates them the same way.
+
+all these components behave just like other react components, so if you want a component to be shown without consideration of the routes, you can just add it in as a tag.
+
+The Link tag
+instead of <a> tags. {Link} needs to be imported from react-router-dom. it has a property called to that gets the next URL as a string.
+
+//navigating from a  redux action creator
+sometimes we want the action to redirect us to another page, as a side effect. for that, we need the history object to be available.
+we import a function called {withRouter} from react-router-dom into the function that will call the action. notice it is a regular function, and can be called from within the second parenthesis of the connect helper, with the component as its argument. then the history object can be passed (through props) to the action creator.

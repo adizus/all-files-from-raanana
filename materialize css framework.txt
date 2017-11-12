@@ -1,0 +1,13 @@
+materialize CSS
+
+a CSS framework that is intended for general use for any type of web application. not all of them work well with react. here components mean pre-done snippets of CSS.
+there are other frameworks that work better with react for example material-UI. however, in material-UI they use js based styling (instead of css files).
+
+How to start: getting started- either with a link tag, or with npm. 
+create-react-app has build-in Webpack. Webpack can process js files and other types of files, such as css.
+in the node_modules folder of the application, find materialize-css/dist/css 
+from there we will import materialize.min.css into src/index.js. notice to leave the extension .css else webpack assumes we mean .js if omit the extension.
+import 'materialize-css/dist/css/materialize.min.css'
+
+the materialize docs will explain how to create the markup in accordance to the design.
+notice: materialize assumes that you have a top level tag in the app with the className container. If you don't, some of the styling may be a bit off.

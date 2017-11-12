@@ -1,0 +1,235 @@
+principles of redux
+
+1. everything that changes in the application, including the data and the UI state, is contained in a single object, called the state.
+2. The state is read only. to change the state, you need to dispatch an action. An action is a object describing the change. It has to have a type property.
+3. to describe state mutation, you write a function that takes the current state of the application and the action being dispatched, and returns the whole state of the application. It does not modify the state given to it, but returns a new object. This function is called a reducer.
+If the reducer receives undefined as the current state, it returns the initial state of the application
+
+redux store:
+the store holds the current application state object, it lets to dispatch actions, and when you create it, you need to specify a reducer that tells how state is updated with actions
+the store has three important methods:
+1.getState- retrieves the current state of the redux store
+2.dispatch- lets you dispatch action to change the state of the application
+3.subscribe- lets you register a callback, that the redux store will call any time a action has been dispatched so that you can update the UI of the application
+
+//example 
+//the reducer
+const counter = (state = 0, action)=>{
+	switch(action.type){
+		case 'INCREMENT':
+			return state+1;
+		case 'DECREMENT':
+			return state-1;
+		default:
+			return state;
+	}
+}
+//the component
+const Counter=({value, onIncrement, onDecrement})=>{
+	<div>
+		<h1>{value}</h1>
+		<button onClick={onIncrement}>+</button>
+		<button onClick={onDecrement}>-</button>
+	</div>
+}
+
+import {createStore} from 'redux';
+const store = createStore(counter);
+
+const render = ()=>{
+	reactDom.render(
+		<Counter 
+			value={store.getState()}
+			onIncrement = {()=>
+				store.dispatch({type:INCREMENT})
+			}
+			onDecrement = {()=>
+				store.dispatch({type:DECREMENT})
+			}
+		/>,document.getElementById('root')	
+};
+
+store.subscribe(render);
+render();
+
+document.addEventListener('click',()=>{
+	store.dispatch({type: 'INCREMENT'});
+});
+
+/*implementation of createStore
+*const createStore = (reducer)=>{
+*	let state;
+*	let listeners =[];
+*	
+*	const setState = ()=>state;
+*	const dispatch(action)=>{
+*		state = reducer(state,action);
+*		listeners.forEach(listener=>listener());
+*	}
+*	const subscribe (listener)=>{
+*		listeners.push(listener);
+*		return ()=>{
+*			listeners = listeners.filter(l=>l!==listener);
+*		}
+*	}	
+*	dispatch({});
+*	return {setState, dispatch, subscribe};
+*}
+*/
+
+the reactDom render function is called any time the state of the store is updated so it is safe to pass the current state of the store as a prop to the root component
+
+the flow of the app:
+the counter component is a dumb component- it has no business logic. It only specifies how the current application state transforms into renderable output, and how the callbacks(passed as props) are bound to the event handlers.
+when we render a counter we specify that the value should be taken from the redux store current state, and when the user presses increment/decrement we dispatch corresponding actions to the redux store.
+our reducer specifies how the the next state is calculated based on the current state and the action being dispatched.
+finally, we subscribe to the redux store, so our render function runs any time the state changes, so the counter gets the current state.
+
+reducer composition 
+different reducer specify how different part of state tree are update in response to different actions. reducers can call other reducers to delegate handling updates, as long as there is one top level reducer
+
+//example
+const todo = (state, action)=>{
+	switch(action.type){
+		case 'ADD_TODO':
+			return{
+				id: action.id,
+				text: action.text,
+				completed: false
+			};
+		case 'TOGGLE_TODO':
+			if(id!==action.id)
+				return state;
+			return {
+				...state,
+				completed: !action.completed
+			}
+		default: 
+			return state;
+	}
+}
+const todos=(state,action)=>{
+	switch(action.type){
+		case 'ADD_TODO':
+			return [
+				...state
+				todo(undefined,action)
+			];
+		case 'TOGGLE_TODO':
+			return state.map(t=>todo(t,action));
+		default:
+			return state;
+	}
+}
+
+const visibilityFilter = (state='SHOW_ALL', action)=>{
+	switch(action.type){
+		case 'SET_VISIBILITY_FILTER':
+			return action.filter;
+		default:
+			return state;
+	}
+}
+
+/*const todoApp(state={},action)=>{
+*	return {
+*		todos: todos(state.todos,action),
+*		visibilityFilter: visibilityFilter(state.visibilityFilter,action)
+*	};
+*}
+*/
+import {combineReducers} from 'redux';
+const reducer = combineReducer({
+	todos,
+	visibilityFilter
+});
+
+import {createStore} from 'redux';
+const store = createStore(todoApp);
+
+the function combineReducers is provided by redux for reducer composition. It generates one reducer from several other reducers, delegating to them part of the state tree.
+it receives an object that maps between the state field names and the reducers managing them, and returns a reducer function, the top level reducer. 
+(when the key names and values of the key are the same, you can use es6 notation and emit the values.)
+
+//implementing combineReducers
+const combineReducers(reducers)=>{	
+	return (state={}, action)=>{
+		Object.keys(reducers).reduce((nextState, key)=>{
+			nextState[key] = reducers[key](state[key],action);
+			return nextState;
+			},{}			/*{} is the initial nextState*/
+		);
+	}
+}
+
+//important
+you can use a component level state also when you have redux. you will do this when the info is esoteric and wont ever be used in any other part of the application. mostly it only saves you from writing extra code. to initialize component level state create a constructor that receives props, in it call super(props) and create the state- this.state = {...};. another possibility is without a constructor, just create the state: state={...}. it is a short cut that is allowed by the babel plug-in.
+
+
+react-redux
+the component is part of react, and the reducers and actions are part of redux, so even if the actions and reducers are written, they will not be available to the component. for that, we import a function named connect from the react-redux library
+connect(*functions*)(*component*)
+the functions:
+if you want the component to get props from the state(in the redux store) you need to write the function mapStateToProps. this function receives the state as a parameter and returns a object, that will be the props. (if the component already has props, these fields will be added, not put instead).
+if you want actions to be available in the component, you write a function mapDispatchToProps, or pass an object with the actions, this is the second parameter.
+
+example
+const mapStateToProps = (state) => {
+    const { months, year, daysLeftInThisMonth } = state.calendar;
+	//same as writing: const months = state.calender.months; etc.
+    return { months, year, daysLeftInThisMonth};
+};
+connect(mapStateToProps,{action1, action2})(componentThatWillGetThesePropsAndActions)
+
+naming in react/redux applications:
+if a file is exporting a class or a component, Label it with a capital letter.
+if it only exports functions, label it with a lower case letter
+
+adding redux to 'create-react-app'
+in src folder:
+index.js is the most root file. It contains all the initial boot-up logic for the react side and redux side of the application. it is all about redux.
+Directly underneath this file we will make a single component named App.js. This file is concerned with rendering-react. figuring out what set of component to show. this is the primary location for setting up all of the react router related logic.
+
+install dependencies: 
+npm install --save redux react-redux react-router-dom
+
+create index.js
+here you import React and ReactDOM and call the ReactDOM.render function. its first argument is the component to render, its second argument is the place you want to render it to
+
+<Provider/>
+we will render a Provider tag, imported from react-redux the Provider tag is the bonding layer. it is the most parent component, and so any other component can reach into the redux store through it.
+
+How to wire up redux to the app
+to src/index.html file: import the {Provider} tag from react-redux, and {createStore} and {applyMiddleware} from redux. Then use the createStore helper to create an instance of the redux store. The first argument to createStore is all the reducers, (dummy reducer: ()=>[];). The second argument is the initial state of the application (relevant if you are taking care of server side rendering. can also be just a empty object). The last argument is the applyMiddleware call. if there are no middlewares yet, just invoke it without arguments. 
+
+place the Provider tag as the first argument to the ReactDOM.render function. (don't forget the comma between the arguments). pass the store that we created as a prop: store={store}, (notice the braces- because it is a js variable), and as a child element, pass the App component.
+
+the next step is creating reducers. the convention is a reducers folder in the src folder, that has a index.js file, and another file for each reducer.
+in the index.js file, import {combineReducers} from redux, and all the reducers from their files. 
+Then invoke and export combineReducers. it gets as an argument an object, in which the reducers are the values, and their keys are the keys for the pieces of state that they are responsible for.
+Then go back to the top level index.js, import the combined reducers(the name of the folder is enough, because index.js file is automatically chosen from it: import reducers from './reducers';), and send them instead of the dummy reducer to the createStore function.
+
+//axios and redux-thunk libraries:
+axios is responsible for helping us making api request or ajax requests.
+redux-thunk make asynchronise action creator behave the way we expect.
+these are middleware so they will arguments in createStore's third argument in src/index.js
+action creators get refactored to use redux-thunk: instead of returning a action we return a function. redux thunk sees we return a function and passes the regular dispatch function as a argument. that way, we can dispatch the action after the request has been completed. in this function we make a request with axios, and then invoke the dispatch function with the action object as its argument.(either using a promise or  async-await syntax)
+
+
+//redux-form
+you need to import {reducer} from redux form and add it to the combine reducers. probably you want to rename reducer to form reducer or reduxForm using the keyword 'as' in the import statement.
+in every component that we use redux-form we need to import {reduxForm}, which is very similar to the connect helper in react-redux. in the signature, the first parenthesis get an object with  key-value options (we will talk more about them) and the second gets the name of the component.
+in order to use any html form element, we need to import {Field} into the component.
+you have to provide props to instruct Field component how to work. 
+for example: type="text" name="myName" component="input".
+name will be the key that redux-form stores the value at, in the store
+component: what kind of tag this field is.
+type is the attribute of the input tag
+many times in component we put a costume react component instead of a html tag name.
+All form fields go inside a form tag. To submit the form you add a prop named onSubmit, and pass it this.props.handleSubmit(), a function that is passed to us by reduxForm. handleSubmit gets a function as a argument, and that function will be called whenever a user tries to submit the form
+redux-form validation:
+one of the key-value options that reduxForm helper can get is validation.
+create a validate function (outside the component). as an argument pass values- an object with all field as key(name) and value. The validate function returns an object named errors. if errors is empty, redux-form assumes the form is validate. to  create object write an if statement. for example if(!values.title){ errors.title = 'You must provide a title';}. to show the error to the user, the field name needs to be the same as errors' field, and the errors will automatically sent to meta.error. validation function automatically runs, so validation message automatically shows. preferably, write if( meta.touched && meta.error), so that the error only shows when needed.
+another option we can pass to reduxForm is destroyOnUnmount, which defaults to true. so if you want to keep the values even when you unmount (leave the component), just make it false.
+The most important option to pass into reduxForm is the name of the form. this will be available as an object on redux state, so you can have access to all the information in the form from any part of the application. You can pass for example  form: 'surveyForm'
+If you call reduxForm in a different component, but give the form the same name, both components refer to the same form. You can do all kinds of tricks using this, making different conditions to behaviours

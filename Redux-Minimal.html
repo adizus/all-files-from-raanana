@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<!-- saved from url=(0029)https://redux-minimal.js.org/ -->
+<html lang="en-us"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>.gitter-hidden{box-sizing:border-box;display:none}.gitter-icon{box-sizing:border-box;width:22px;height:22px;fill:currentColor}.gitter-chat-embed{box-sizing:border-box;z-index:100;position:fixed;top:0;left:60%;bottom:0;right:0;display:-webkit-box;display:-ms-flexbox;display:flex;-webkit-box-orient:horizontal;-webkit-box-direction:normal;-ms-flex-direction:row;flex-direction:row;background-color:#fff;border-left:1px solid #333;box-shadow:-12px 0 18px 0 rgba(50,50,50,.3);-webkit-transition:-webkit-transform .3s cubic-bezier(.16,.22,.22,1.7);transition:-webkit-transform .3s cubic-bezier(.16,.22,.22,1.7);transition:transform .3s cubic-bezier(.16,.22,.22,1.7);transition:transform .3s cubic-bezier(.16,.22,.22,1.7),-webkit-transform .3s cubic-bezier(.16,.22,.22,1.7)}@context border-box{.gitter-chat-embed{box-sizing:border-box;background-color:#fff}}.gitter-chat-embed.is-collapsed:not(.is-loading){box-sizing:border-box;-webkit-transform:translateX(110%);transform:translateX(110%)}.gitter-chat-embed:after{box-sizing:border-box;content:'';z-index:-1;position:absolute;top:0;left:100%;bottom:0;right:-100%;background-color:#fff}@context border-box{.gitter-chat-embed:after{box-sizing:border-box;background-color:#fff}}@media(max-width:1150px){.gitter-chat-embed{box-sizing:border-box;left:45%}}@media(max-width:944px){.gitter-chat-embed{box-sizing:border-box;left:30%}}@media(max-width:600px){.gitter-chat-embed{box-sizing:border-box;left:15%}}@media(max-width:500px){.gitter-chat-embed{box-sizing:border-box;left:0;border-left:none}}.gitter-chat-embed>iframe{box-sizing:border-box;-webkit-box-flex:1;-ms-flex:1;flex:1;width:100%;height:100%;border:0}.gitter-chat-embed-loading-wrapper{box-sizing:border-box;position:absolute;top:0;left:0;bottom:0;right:0;display:none;-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;-ms-grid-row-align:center;align-items:center}.is-loading .gitter-chat-embed-loading-wrapper{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex}.gitter-chat-embed-loading-indicator{box-sizing:border-box;opacity:.75;background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNzkyIDE3OTIiIGZpbGw9IiMzYTMxMzMiPjxwYXRoIGQ9Ik01MjYgMTM5NHEwIDUzLTM3LjUgOTAuNXQtOTAuNSAzNy41cS01MiAwLTkwLTM4dC0zOC05MHEwLTUzIDM3LjUtOTAuNXQ5MC41LTM3LjUgOTAuNSAzNy41IDM3LjUgOTAuNXptNDk4IDIwNnEwIDUzLTM3LjUgOTAuNXQtOTAuNSAzNy41LTkwLjUtMzcuNS0zNy41LTkwLjUgMzcuNS05MC41IDkwLjUtMzcuNSA5MC41IDM3LjUgMzcuNSA5MC41em0tNzA0LTcwNHEwIDUzLTM3LjUgOTAuNXQtOTAuNSAzNy41LTkwLjUtMzcuNS0zNy41LTkwLjUgMzcuNS05MC41IDkwLjUtMzcuNSA5MC41IDM3LjUgMzcuNSA5MC41em0xMjAyIDQ5OHEwIDUyLTM4IDkwdC05MCAzOHEtNTMgMC05MC41LTM3LjV0LTM3LjUtOTAuNSAzNy41LTkwLjUgOTAuNS0zNy41IDkwLjUgMzcuNSAzNy41IDkwLjV6bS05NjQtOTk2cTAgNjYtNDcgMTEzdC0xMTMgNDctMTEzLTQ3LTQ3LTExMyA0Ny0xMTMgMTEzLTQ3IDExMyA0NyA0NyAxMTN6bTExNzAgNDk4cTAgNTMtMzcuNSA5MC41dC05MC41IDM3LjUtOTAuNS0zNy41LTM3LjUtOTAuNSAzNy41LTkwLjUgOTAuNS0zNy41IDkwLjUgMzcuNSAzNy41IDkwLjV6bS02NDAtNzA0cTAgODAtNTYgMTM2dC0xMzYgNTYtMTM2LTU2LTU2LTEzNiA1Ni0xMzYgMTM2LTU2IDEzNiA1NiA1NiAxMzZ6bTUzMCAyMDZxMCA5My02NiAxNTguNXQtMTU4IDY1LjVxLTkzIDAtMTU4LjUtNjUuNXQtNjUuNS0xNTguNXEwLTkyIDY1LjUtMTU4dDE1OC41LTY2cTkyIDAgMTU4IDY2dDY2IDE1OHoiLz48L3N2Zz4=);-webkit-animation:spin 2s infinite linear;animation:spin 2s infinite linear}@-webkit-keyframes spin{0%{box-sizing:border-box;-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{box-sizing:border-box;-webkit-transform:rotate(359.9deg);transform:rotate(359.9deg)}}@keyframes spin{0%{box-sizing:border-box;-webkit-transform:rotate(0deg);transform:rotate(0deg)}to{box-sizing:border-box;-webkit-transform:rotate(359.9deg);transform:rotate(359.9deg)}}.gitter-chat-embed-action-bar{position:absolute;top:0;left:0;right:0;-webkit-box-pack:end;-ms-flex-pack:end;justify-content:flex-end;padding-bottom:.7em;background:-webkit-linear-gradient(top,#fff,#fff 50%,hsla(0,0%,100%,0));background:linear-gradient(180deg,#fff 0,#fff 50%,hsla(0,0%,100%,0))}.gitter-chat-embed-action-bar,.gitter-chat-embed-action-bar-item{box-sizing:border-box;display:-webkit-box;display:-ms-flexbox;display:flex}.gitter-chat-embed-action-bar-item{-webkit-box-pack:center;-ms-flex-pack:center;justify-content:center;-webkit-box-align:center;-ms-flex-align:center;align-items:center;width:40px;height:40px;padding-left:0;padding-right:0;opacity:.65;background:none;background-position:50%;background-repeat:no-repeat;background-size:22px 22px;border:0;outline:none;cursor:pointer;cursor:hand;-webkit-transition:all .2s ease;transition:all .2s ease}.gitter-chat-embed-action-bar-item:focus,.gitter-chat-embed-action-bar-item:hover{box-sizing:border-box;opacity:1}.gitter-chat-embed-action-bar-item:active{box-sizing:border-box;-webkit-filter:hue-rotate(80deg) saturate(150);filter:hue-rotate(80deg) saturate(150)}.gitter-chat-embed-action-bar-item-pop-out{box-sizing:border-box;margin-right:-4px;background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyMDAgMTcxLjQyOSIgZmlsbD0iIzNhMzEzMyI+PHBhdGggZD0iTTE1Ny4xNDMsMTAzLjU3MXYzNS43MTRjMCw4Ljg1NC0zLjE0NCwxNi40MjYtOS40MzEsMjIuNzEzcy0xMy44NTgsOS40MzEtMjIuNzEyLDkuNDMxSDMyLjE0MyBjLTguODU0LDAtMTYuNDI1LTMuMTQ0LTIyLjcxMi05LjQzMVMwLDE0OC4xNCwwLDEzOS4yODVWNDYuNDI5YzAtOC44NTQsMy4xNDQtMTYuNDI1LDkuNDMxLTIyLjcxMiBjNi4yODctNi4yODcsMTMuODU4LTkuNDMxLDIyLjcxMi05LjQzMWg3OC41NzJjMS4wNDEsMCwxLjg5NiwwLjMzNSwyLjU2NiwxLjAwNGMwLjY3LDAuNjcsMS4wMDQsMS41MjUsMS4wMDQsMi41NjdWMjUgYzAsMS4wNDItMC4zMzQsMS44OTctMS4wMDQsMi41NjdjLTAuNjcsMC42Ny0xLjUyNSwxLjAwNC0yLjU2NiwxLjAwNEgzMi4xNDNjLTQuOTExLDAtOS4xMTUsMS43NDktMTIuNjEyLDUuMjQ2IHMtNS4yNDYsNy43MDEtNS4yNDYsMTIuNjEydjkyLjg1NmMwLDQuOTExLDEuNzQ5LDkuMTE1LDUuMjQ2LDEyLjYxMnM3LjcwMSw1LjI0NSwxMi42MTIsNS4yNDVIMTI1YzQuOTEsMCw5LjExNS0xLjc0OCwxMi42MTEtNS4yNDUgYzMuNDk3LTMuNDk3LDUuMjQ2LTcuNzAxLDUuMjQ2LTEyLjYxMnYtMzUuNzE0YzAtMS4wNDIsMC4zMzQtMS44OTcsMS4wMDQtMi41NjdjMC42Ny0wLjY2OSwxLjUyNS0xLjAwNCwyLjU2Ny0xLjAwNGg3LjE0MyBjMS4wNDIsMCwxLjg5NywwLjMzNSwyLjU2NywxLjAwNEMxNTYuODA5LDEwMS42NzQsMTU3LjE0MywxMDIuNTI5LDE1Ny4xNDMsMTAzLjU3MXogTTIwMCw3LjE0M3Y1Ny4xNDMgYzAsMS45MzUtMC43MDcsMy42MDktMi4xMjEsNS4wMjJjLTEuNDEzLDEuNDE0LTMuMDg4LDIuMTIxLTUuMDIxLDIuMTIxYy0xLjkzNSwwLTMuNjA5LTAuNzA3LTUuMDIyLTIuMTIxbC0xOS42NDQtMTkuNjQzIGwtNzIuNzY3LDcyLjc2OWMtMC43NDQsMC43NDQtMS42LDEuMTE1LTIuNTY3LDEuMTE1cy0xLjgyMy0wLjM3MS0yLjU2Ny0xLjExNUw3Ny41NjcsMTA5LjcxYy0wLjc0NC0wLjc0NC0xLjExNi0xLjYtMS4xMTYtMi41NjcgYzAtMC45NjcsMC4zNzItMS44MjIsMS4xMTYtMi41NjZsNzIuNzY4LTcyLjc2OGwtMTkuNjQ0LTE5LjY0M2MtMS40MTMtMS40MTQtMi4xMi0zLjA4OC0yLjEyLTUuMDIyYzAtMS45MzUsMC43MDctMy42MDksMi4xMi01LjAyMiBDMTMyLjEwNSwwLjcwNywxMzMuNzc5LDAsMTM1LjcxNSwwaDU3LjE0M2MxLjkzNCwwLDMuNjA4LDAuNzA3LDUuMDIxLDIuMTIxQzE5OS4yOTMsMy41MzQsMjAwLDUuMjA4LDIwMCw3LjE0M3oiLz48L3N2Zz4=)}.gitter-chat-embed-action-bar-item-collapse-chat{box-sizing:border-box;background-image:url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxNzEuNDI5IDE3MS40MjkiIGZpbGw9IiMzYTMxMzMiPjxwYXRoIGQ9Ik0xMjIuNDMzLDEwNi4xMzhsLTE2LjI5NSwxNi4yOTVjLTAuNzQ0LDAuNzQ0LTEuNiwxLjExNi0yLjU2NiwxLjExNmMtMC45NjgsMC0xLjgyMy0wLjM3Mi0yLjU2Ny0xLjExNmwtMTUuMjktMTUuMjkgbC0xNS4yOSwxNS4yOWMtMC43NDQsMC43NDQtMS42LDEuMTE2LTIuNTY3LDEuMTE2cy0xLjgyMy0wLjM3Mi0yLjU2Ny0xLjExNmwtMTYuMjk0LTE2LjI5NWMtMC43NDQtMC43NDQtMS4xMTYtMS42LTEuMTE2LTIuNTY2IGMwLTAuOTY4LDAuMzcyLTEuODIzLDEuMTE2LTIuNTY3bDE1LjI5LTE1LjI5bC0xNS4yOS0xNS4yOWMtMC43NDQtMC43NDQtMS4xMTYtMS42LTEuMTE2LTIuNTY3czAuMzcyLTEuODIzLDEuMTE2LTIuNTY3IEw2NS4yOSw0OC45OTZjMC43NDQtMC43NDQsMS42LTEuMTE2LDIuNTY3LTEuMTE2czEuODIzLDAuMzcyLDIuNTY3LDEuMTE2bDE1LjI5LDE1LjI5bDE1LjI5LTE1LjI5IGMwLjc0NC0wLjc0NCwxLjYtMS4xMTYsMi41NjctMS4xMTZjMC45NjcsMCwxLjgyMiwwLjM3MiwyLjU2NiwxLjExNmwxNi4yOTUsMTYuMjk0YzAuNzQ0LDAuNzQ0LDEuMTE2LDEuNiwxLjExNiwyLjU2NyBzLTAuMzcyLDEuODIzLTEuMTE2LDIuNTY3bC0xNS4yOSwxNS4yOWwxNS4yOSwxNS4yOWMwLjc0NCwwLjc0NCwxLjExNiwxLjYsMS4xMTYsMi41NjcgQzEyMy41NDksMTA0LjUzOSwxMjMuMTc3LDEwNS4zOTQsMTIyLjQzMywxMDYuMTM4eiBNMTQ2LjQyOSw4NS43MTRjMC0xMS4wMTItMi43MTctMjEuMTY4LTguMTQ4LTMwLjQ2OSBzLTEyLjc5Ny0xNi42NjctMjIuMDk4LTIyLjA5OFM5Ni43MjYsMjUsODUuNzE0LDI1cy0yMS4xNjgsMi43MTYtMzAuNDY5LDguMTQ3UzM4LjU3OSw0NS45NDUsMzMuMTQ3LDU1LjI0NlMyNSw3NC43MDMsMjUsODUuNzE0IHMyLjcxNiwyMS4xNjgsOC4xNDcsMzAuNDY5czEyLjc5NywxNi42NjYsMjIuMDk4LDIyLjA5OHMxOS40NTcsOC4xNDgsMzAuNDY5LDguMTQ4czIxLjE2OC0yLjcxNywzMC40NjktOC4xNDggczE2LjY2Ni0xMi43OTcsMjIuMDk4LTIyLjA5OFMxNDYuNDI5LDk2LjcyNiwxNDYuNDI5LDg1LjcxNHogTTE3MS40MjksODUuNzE0YzAsMTUuNTUxLTMuODMyLDI5Ljg5My0xMS40OTYsNDMuMDI0IGMtNy42NjQsMTMuMTMzLTE4LjA2MiwyMy41My0zMS4xOTQsMzEuMTk0Yy0xMy4xMzIsNy42NjQtMjcuNDc0LDExLjQ5Ni00My4wMjQsMTEuNDk2cy0yOS44OTItMy44MzItNDMuMDI0LTExLjQ5NiBjLTEzLjEzMy03LjY2NC0yMy41MzEtMTguMDYyLTMxLjE5NC0zMS4xOTRDMy44MzIsMTE1LjYwNywwLDEwMS4yNjUsMCw4NS43MTRTMy44MzIsNTUuODIyLDExLjQ5Niw0Mi42OSBjNy42NjQtMTMuMTMzLDE4LjA2Mi0yMy41MzEsMzEuMTk0LTMxLjE5NEM1NS44MjIsMy44MzIsNzAuMTY0LDAsODUuNzE0LDBzMjkuODkzLDMuODMyLDQzLjAyNCwxMS40OTYgYzEzLjEzMyw3LjY2NCwyMy41MywxOC4wNjIsMzEuMTk0LDMxLjE5NEMxNjcuNTk3LDU1LjgyMiwxNzEuNDI5LDcwLjE2NCwxNzEuNDI5LDg1LjcxNHoiLz48L3N2Zz4=)}.gitter-open-chat-button{z-index:100;position:fixed;bottom:0;right:10px;padding:1em 3em;background-color:#36bc98;border:0;border-top-left-radius:.5em;border-top-right-radius:.5em;font-family:sans-serif;font-size:12px;letter-spacing:1px;text-transform:uppercase;text-align:center;text-decoration:none;cursor:pointer;cursor:hand;-webkit-transition:all .3s ease;transition:all .3s ease}.gitter-open-chat-button,.gitter-open-chat-button:visited{box-sizing:border-box;color:#fff}.gitter-open-chat-button:focus,.gitter-open-chat-button:hover{box-sizing:border-box;background-color:#3ea07f;color:#fff}.gitter-open-chat-button:focus{box-sizing:border-box;box-shadow:0 0 8px rgba(62,160,127,.6);outline:none}.gitter-open-chat-button:active{box-sizing:border-box;color:#eee}.gitter-open-chat-button.is-collapsed{box-sizing:border-box;-webkit-transform:translateY(120%);transform:translateY(120%)}</style>
+    <title>Redux-Minimal</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./Redux-Minimal_files/normalize.css" media="screen">
+    <link href="./Redux-Minimal_files/css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="./Redux-Minimal_files/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="./Redux-Minimal_files/github-light.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="./Redux-Minimal_files/custom.css" media="screen">
+  </head>
+  <body cz-shortcut-listen="true">
+    <section class="page-header">
+      <img src="./Redux-Minimal_files/redux-minimal-logo-white.svg">
+      <h2 class="project-tagline">Start building complex react-redux apps today, with this minimalist easy to understand starter kit (boilerplate)</h2>
+      <a href="https://github.com/catalin-luntraru/redux-minimal" class="btn">View on GitHub</a>
+      <a href="https://github.com/catalin-luntraru/redux-minimal/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/catalin-luntraru/redux-minimal/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="react-redux-minimal-starter-kit-boilerplate" class="anchor" href="https://redux-minimal.js.org/#react-redux-minimal-starter-kit-boilerplate" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>React Redux minimal starter kit (boilerplate)</h1>
+
+<p><a href="https://gitter.im/catalin-luntraru/redux-minimal?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="./Redux-Minimal_files/redux-minimal.svg" alt="Join the chat at https://gitter.im/catalin-luntraru/redux-minimal"></a>
+<a href="https://travis-ci.org/catalin-luntraru/redux-minimal?branch=master"><img src="./Redux-Minimal_files/redux-minimal(1).svg" alt="Build Status"></a>
+<a href="https://david-dm.org/catalin-luntraru/redux-minimal"><img src="./Redux-Minimal_files/redux-minimal(2).svg" alt="dependencies"></a>
+<a href="https://david-dm.org/catalin-luntraru/redux-minimal?type=dev"><img src="./Redux-Minimal_files/dev-status.svg" alt="devDependency Status"></a></p>
+
+<p>Redux-Minimal is a minimalist react-redux starter kit (boilerplate) which let's you build rich real world apps. 
+It's not as light as some starter kits which only let you write a simple hello world app and then you have to struggle with installing all the other stuff yourself. 
+And it's also not as packed as other starter kits which confuse you massively with its folder/file structure and arcane scripts.</p>
+
+<p>Redux-Minimal contains the bare minimum to develop a real world complex app and it also comes with a small users app that will show you how to code certain features.
+A demo of the app can be seen here: <a href="http://redux-minimal-app.catalin-luntraru.com/">http://redux-minimal-app.catalin-luntraru.com</a></p>
+
+<h1>
+<a id="getting-started" class="anchor" href="https://redux-minimal.js.org/#getting-started" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Getting started</h1>
+
+<ol>
+<li>
+<p>Before you start working with redux-minimal, you first need to setup your environment. Make sure you have the following installed:</p>
+
+<ul>
+<li><a href="https://git-scm.com/downloads">Git</a></li>
+<li><a href="https://nodejs.org/en/download/current/">NodeJs and Npm</a></li>
+<li>an IDE to write js code in, for example <a href="https://www.jetbrains.com/webstorm/download/">Webstorm</a>
+</li>
+</ul>
+</li>
+<li>
+<p>Once your environment is prepared, open a command prompt (terminal) and type in the following:</p>
+
+<div class="highlight highlight-source-shell"><pre><span class="pl-c1">cd</span> C:<span class="pl-cce">\j</span>s<span class="pl-cce">\n</span>ode<span class="pl-cce">\a</span>pps
+git clone https://github.com/catalin-luntraru/redux-minimal.git hello-world
+<span class="pl-c1">cd</span> hello-world
+npm install
+npm start</pre></div>
+</li>
+<li><p>Then open your <a href="http://localhost:8080/">http://localhost:8080/</a> to see the included small users app. 
+Congratulations! You can now write react redux code.</p></li>
+<li><p>For more productivity you can install Chrome's <a href="https://chrome.google.com/webstore/detail/react-developer-tools/fmkadmapgofadopljbjfkapdkoienihi?hl=en">React Developer Tools</a> and <a href="https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en">Redux Dev Tools</a></p></li>
+</ol>
+
+<h1><a id="user-content-video-tutorial" class="anchor" href="https://redux-minimal.js.org/#video-tutorial" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Video tutorial</h1>
+<p>I made a video tutorial series, to help people out getting started with react and redux. It covers the basics, like what is react, redux, etc, and also setting up the environment with redux-minimal and guiding you step by step with creating the demo users app. You will also understand why code was written this way, where refactoring was needed, etc.</p>
+<p><a href="https://www.youtube.com/watch?v=d0oUGmSE6IY&amp;list=PLJBrYU54JD2pTblB20OmV7GL6H5J-p2g8">Let's learn React and Redux with Javascript's new ES6 syntax, from Beginner to Intermediate to Advanced</a></p>
+
+<h1>
+<a id="why-use-this" class="anchor" href="https://redux-minimal.js.org/#why-use-this" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Why use this?</h1>
+
+<p>Redux-Minimal contains the minimum npm packages you need to have installed in order to build a react redux real-world app containing:</p>
+
+<ul>
+<li>a proper file/folder structure</li>
+<li>pages (routes)</li>
+<li>forms with validation</li>
+<li>real-world API asynchronous requests</li>
+<li>unit tests</li>
+<li>bootstrap react components</li>
+<li>sass</li>
+<li>hot loader for ease of development</li>
+<li>redux tools</li>
+<li>js and css bundle files built for development or production</li>
+</ul>
+
+<p>The code and implementation are minimal, which lets you focus on the real app, not the webpack, babel, gulp etc boilerplate files, which honestly you shouldn't even bother with.</p>
+
+<h1>
+<a id="installed-packages" class="anchor" href="https://redux-minimal.js.org/#installed-packages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Installed packages</h1>
+
+<p>Here are the npm packages that redux-minimal installs:</p>
+
+        <table><thead>
+        <tr>
+            <th>Feature</th>
+            <th>Packages</th>
+            <th>Benefits</th>
+        </tr>
+        </thead><tbody>
+        <tr>
+            <td>React</td>
+            <td><a href="https://github.com/facebook/react"><code>react</code></a></td>
+            <td>A declarative, efficient, and flexible JavaScript library for building user interfaces</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href="https://www.npmjs.com/package/react-dom"><code>react-dom</code></a></td>
+            <td>Serves as the entry point of the DOM-related rendering paths</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href="https://github.com/gaearon/react-hot-loader"><code>react-hot-loader</code></a></td>
+            <td>Tweak React components in real time when developing</td>
+        </tr>
+        <tr>
+            <td>Redux</td>
+            <td><a href="https://github.com/reactjs/redux"><code>redux</code></a></td>
+            <td>A predictable state container for JavaScript apps</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href="https://github.com/reactjs/react-redux"><code>react-redux</code></a></td>
+            <td>React bindings for Redux</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href="https://github.com/buunguyen/redux-freeze"><code>redux-freeze</code></a></td>
+            <td>Redux middleware that prevents state from being mutated anywhere in the app</td>
+        </tr>
+        <tr>
+            <td>Router</td>
+            <td><a href="https://github.com/ReactTraining/react-router"><code>react-router</code></a></td>
+            <td>Declarative routing for React. Your app has pages now</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href="https://github.com/reactjs/react-router-redux"><code>react-router-redux</code></a></td>
+            <td>Simple bindings to keep react-router and redux in sync</td>
+        </tr>
+        <tr>
+            <td>Bootstrap</td>
+            <td><a href="https://github.com/react-bootstrap/react-bootstrap"><code>react-bootstrap</code></a></td>
+            <td>Bootstrap 3 components built with React</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href="https://github.com/react-bootstrap/react-router-bootstrap"><code>react-router-bootstrap</code></a></td>
+            <td>Integration between React Router and React-Bootstrap</td>
+        </tr>
+        <tr>
+            <td>Forms</td>
+            <td><a href="https://github.com/erikras/redux-form"><code>redux-form</code></a></td>
+            <td>A Higher Order Component using react-redux to keep form state in a Redux store</td>
+        </tr>
+        <tr>
+            <td>Asynchronous</td>
+            <td><a href="https://github.com/yelouafi/redux-saga"><code>redux-saga</code></a></td>
+            <td>Asynchronous API calls made easy with Saga</td>
+        </tr>
+        <tr>
+            <td>Unit tests</td>
+            <td><a href="https://github.com/mochajs/mocha"><code>mocha</code></a></td>
+            <td>Simple javascript test framework</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href="https://github.com/airbnb/enzyme"><code>enzyme</code></a></td>
+            <td>JavaScript Testing utilities for React components</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href="https://facebook.github.io/react/docs/test-utils.html"><code>react-addons-test-utils</code></a></td>
+            <td>Required by enzyme. Makes it easy to test React components</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href="https://www.npmjs.com/package/ignore-styles"><code>ignore-styles</code></a></td>
+            <td>Ignore imported style files when running in Node</td>
+        </tr>
+        <tr>
+            <td>Sass</td>
+            <td><a href="https://github.com/sass/node-sass"><code>node-sass</code></a></td>
+            <td>Mature, stable, and powerful CSS extension language</td>
+        </tr>
+        <tr>
+            <td>Webpack</td>
+            <td><a href="https://github.com/webpack/webpack"><code>webpack</code></a></td>
+            <td>A bundler for javascript, css and others</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href="https://github.com/webpack/webpack-dev-server"><code>webpack-dev-server</code></a></td>
+            <td>Serves the app at <a href="http://localhost:8080/">http://localhost:8080/</a></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href="https://github.com/webpack/extract-text-webpack-plugin"><code>extract-text-webpack-plugin</code></a></td>
+            <td>Webpack plugin that builds the css bundle file</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href="https://github.com/webpack/style-loader"><code>style-loader</code></a></td>
+            <td>Webpack module that loads styles</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href="https://github.com/webpack/css-loader"><code>css-loader</code></a></td>
+            <td>Webpack module that loads css styles</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href="https://github.com/jtangelder/sass-loader"><code>sass-loader</code></a></td>
+            <td>Webpack module that loads sass styles</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href="https://github.com/johnagan/clean-webpack-plugin"><code>clean-webpack-plugin</code></a></td>
+            <td>Webpack module to remove previous build files</td>
+        </tr>
+        <tr>
+            <td>Babel</td>
+            <td><a href="https://github.com/babel/babel/tree/master/packages/babel-core"><code>babel-core</code></a></td>
+            <td>Compiler that helps node.js and the browser to understand the new js syntax</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href="https://www.npmjs.com/package/babel-runtime"><code>babel-runtime</code></a></td>
+            <td>Helps node.js to understand the new js syntax</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href="http://babeljs.io/docs/plugins/preset-es2015/"><code>babel-preset-es2015</code></a></td>
+            <td>Helps node.js to use <a href="http://www.ecma-international.org/ecma-262/6.0/ECMA-262.pdf">ES2015 Javascript syntax</a></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href="http://babeljs.io/docs/plugins/preset-react/"><code>babel-preset-react</code></a></td>
+            <td>Helps node.js to use React's <a href="https://facebook.github.io/jsx/">JSX syntax</a></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href="https://babeljs.io/docs/plugins/preset-stage-0/"><code>babel-preset-stage-3</code></a></td>
+            <td>Helps node.js to use the spread operator</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href="https://github.com/babel/babel-loader"><code>babel-loader</code></a></td>
+            <td>Helps webpack to compile the new javascript syntax</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href="https://babeljs.io/docs/usage/polyfill/"><code>babel-polyfill</code></a></td>
+            <td>Helps the browser to understand the new js syntax</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><a href="https://github.com/github/fetch"><code>whatwg-fetch</code></a></td>
+            <td>Helps the browser to use fetch</td>
+        </tr>
+        </tbody></table>
+
+<h1>Express branch</h1>
+<p>You can use the <a href="https://github.com/catalin-luntraru/redux-minimal/tree/express">express branch</a> if you want to use express instead of webpack-dev-server.</p>
+
+<h1>Sample app</h1>
+
+<p>Redux-Minimal also contains a small sample app that let's you manage some users with the following features:</p>
+
+<ul>
+<li>a list of users with pagination</li>
+<li>add a new user</li>
+<li>edit an existing user</li>
+<li>delete a user</li>
+</ul>
+
+<p>The sample app provides you with basically most of the things you will need when building a new real-world app.</p>
+
+<p>The demo for the app can be found here: 
+<a href="http://redux-minimal-app.catalin-luntraru.com/">http://redux-minimal-app.catalin-luntraru.com</a></p>
+
+<h1>
+<a id="build-your-own-app" class="anchor" href="https://redux-minimal.js.org/#build-your-own-app" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Build your own app</h1>
+
+<ol>
+<li><p>Open <code>webpack.config.js</code> and change the <code>app_root</code> value from <code>src_users</code> to <code>src</code></p></li>
+<li><p>Run <code>npm start</code></p></li>
+<li><p>Congratulations! You now have a blank <code>Hello world</code> starting app</p></li>
+</ol>
+
+<h1>
+<a id="scripts" class="anchor" href="https://redux-minimal.js.org/#scripts" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Scripts</h1>
+
+<p>Besides the <code>start</code> script, there are also other scripts</p>
+
+<table>
+<thead>
+<tr>
+<th><code>npm run &lt;script&gt;</code></th>
+<th>What it does</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>start</code></td>
+<td>Starts the app at <a href="http://localhost:8080/">http://localhost:8080/</a>. The bundle js/css files are stored in memory</td>
+</tr>
+<tr>
+<td><code>test</code></td>
+<td>Starts the unit testing using all the files found in the <code>test</code> folder</td>
+</tr>
+<tr>
+<td><code>test-watch</code></td>
+<td>Starts the unit testing and watches for changes to re-run the tests</td>
+</tr>
+<tr>
+<td><code>build-dev</code></td>
+<td>Builds the js/css bundle files in the <code>public</code> folder. Adds debugging code for development</td>
+</tr>
+<tr>
+<td><code>build-prod</code></td>
+<td>Builds the js/css bundle minified files in the <code>public</code> folder</td>
+</tr>
+</tbody>
+</table>
+
+<h1>
+<a id="license" class="anchor" href="https://redux-minimal.js.org/#license" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>License</h1>
+
+<p>This project is licensed under the MIT license, Copyright (c) 2016 Catalin Luntraru.</p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/catalin-luntraru/redux-minimal">Redux-Minimal</a> is maintained by <a href="https://github.com/catalin-luntraru">catalin-luntraru</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com/">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+
+    <script>
+      ((window.gitter = {}).chat = {}).options = {
+        room: 'catalin-luntraru/redux-minimal'
+      };
+    </script>
+    <script src="./Redux-Minimal_files/sidecar.v1.js.הורד" async="" defer=""></script>
+  
+
+<aside class="gitter-chat-embed is-collapsed"><div class="gitter-chat-embed-action-bar"><a class="gitter-chat-embed-action-bar-item gitter-chat-embed-action-bar-item-pop-out" aria-label="Open Chat in Gitter.im" href="https://gitter.im/catalin-luntraru/redux-minimal" target="_blank"></a><button class="gitter-chat-embed-action-bar-item gitter-chat-embed-action-bar-item-collapse-chat" aria-label="Collapse Gitter Chat"></button></div><div class="gitter-chat-embed-loading-wrapper">
+        <div class="gitter-chat-embed-loading-indicator gitter-icon"></div>
+      </div></aside><a href="https://gitter.im/catalin-luntraru/redux-minimal" class="gitter-open-chat-button">Open Chat</a></body></html>
